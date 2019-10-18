@@ -18,9 +18,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Mon premier flutter'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -44,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String prenom = '';
   int _counter = 0;
 
   void _incrementCounter() {
@@ -89,15 +91,35 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Hey $prenom, you have clicked the button this many times:',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 20.0
+              ),
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            TextField(
+              onChanged: (String string) {
+                setState(() {
+                  // prenom = string;
+                });
+              },
+              onSubmitted: (String string) {
+                setState(() {
+                  prenom = string;
+                });
+              },
+              decoration: InputDecoration(
+                labelText: 'Enter your firstname'
+              ),
+            )
           ],
         ),
       ),
