@@ -27,6 +27,9 @@ class Home extends StatefulWidget {
   
 }
 class _Home extends State<Home> {
+
+  bool oui = false;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -50,7 +53,7 @@ class _Home extends State<Home> {
               new Text(
                 "Salut les codeurs",
                 style: new TextStyle(
-                  color: Colors.grey[900],
+                  color: (oui) ? Colors.grey[900] : Colors.green,
                   fontSize: 30.0,
                   fontStyle: FontStyle.italic
                 ),
@@ -66,6 +69,26 @@ class _Home extends State<Home> {
                   )
                 ),
               ),
+              new IconButton(
+                icon: new Icon(Icons.delete),
+                onPressed: () {
+                  print("On a appuyé sur le bouton");
+                  setState(() {
+                    oui = !oui;                    
+                  });
+                },
+              ),
+              new FlatButton(
+                onPressed: boutonAppuye,
+                child: new Text("Appuyez moi !"),
+              ),
+              new RaisedButton(
+                onPressed: boutonAppuye,
+                child: new Text("Je suis plus haut que toi"),
+                color: Colors.red,
+                textColor: Colors.white,
+                elevation: 8,
+              ),
               new Container(
                 height: largeur / 5,
                 color: Colors.red,
@@ -73,42 +96,54 @@ class _Home extends State<Home> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    new Container(
-                      height: largeur / 8,
-                      width:largeur / 8,
-                      color: Colors.yellow,
-                    ),
-                    new Container(
-                      height: largeur / 8,
-                      width:largeur / 8,
-                      color: Colors.blue,
-                    ),
-                    new Container(
-                      height: largeur / 8,
-                      width:largeur / 8,
-                      color: Colors.indigo,
-                    ),
-                    new Container(
-                      height: largeur / 8,
-                      width:largeur / 8,
-                      color: Colors.teal,
-                    ),
-                    new Container(
-                      height: largeur / 8,
-                      width:largeur / 8,
-                      color: Colors.indigo,
-                    ),
-                    new Container(
-                      height: largeur / 8,
-                      width: largeur / 8,
-                      color: Colors.teal,
-                    ),
+                    new Icon(Icons.thumb_up,
+                    color: Colors.white,
+                    size: largeur / 10,),
+                    new Icon(Icons.directions_bike,
+                    color: Colors.white,
+                    size: largeur / 10,),
+                    new Icon(Icons.thumb_down,
+                    color: Colors.white,
+                    size: largeur / 10,),
+                    new Icon(Icons.palette,
+                    color: Colors.white,
+                    size: largeur / 10,),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width:largeur / 8,
+                    //   color: Colors.yellow,
+                    // ),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width:largeur / 8,
+                    //   color: Colors.blue,
+                    // ),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width:largeur / 8,
+                    //   color: Colors.indigo,
+                    // ),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width:largeur / 8,
+                    //   color: Colors.teal,
+                    // ),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width:largeur / 8,
+                    //   color: Colors.indigo,
+                    // ),
+                    // new Container(
+                    //   height: largeur / 8,
+                    //   width: largeur / 8,
+                    //   color: Colors.teal,
+                    // ),
                   ],
                 ),
               )
             ],
           ),
-        )
+        ),
         // new Container(
         //   color: Colors.blue,
         //   // margin: EdgeInsets.only(top: 20.0, bottom: 15.0),
@@ -141,6 +176,20 @@ class _Home extends State<Home> {
         //         //   fit: BoxFit.cover,
         //         //   ),
         // ),
+        floatingActionButton: new FloatingActionButton(
+          onPressed: boutonAppuye,
+          elevation: 8.0,
+          tooltip: 'Changer oui',
+          child: new Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
+void boutonAppuye() {
+  setState(() {
+    oui = !oui;
+  });
+}
+
 }
